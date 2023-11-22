@@ -1,7 +1,8 @@
+import 'package:booking_app/components/tab_view/hotal_tab_view.dart';
+import 'package:booking_app/pages/Flight/ui/flight_main_page.dart';
 import 'package:booking_app/pages/Home/bloc/home_bloc.dart';
 import 'package:booking_app/utils/constants/color_lib.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final HomeBloc bloc1 = HomeBloc();
+  final PageController pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -209,451 +211,143 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  BlocBuilder<HomeBloc, HomeState>(
-                    builder: (context, state) {
-                      final homeTabState = state as HomeInitial;
-
-                      return TabBar(
-                        tabs: [
-                          Tab(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: AppColor.Font4,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.business,
-                                      color: AppColor.BluePrimary),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  const Text(
-                                    "Hotel",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Tab(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: AppColor.Font4,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.train,
-                                      color: AppColor.BluePrimary),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  const Text(
-                                    "Train",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Tab(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: AppColor.Font4,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.directions_bus,
-                                      color: AppColor.BluePrimary),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  const Text(
-                                    "Bus",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Tab(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: AppColor.Font4,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.flight,
-                                      color: AppColor.BluePrimary),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  const Text(
-                                    "Flight",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                        splashFactory: NoSplash.splashFactory,
-                        labelPadding: const EdgeInsets.all(10),
-                        isScrollable: true,
-                        tabAlignment: TabAlignment.center,
-                        dividerColor: AppColor.Base2,
-                        onTap: (value) {
-                          BlocProvider.of<HomeBloc>(context)
-                              .add(HomeTabChange(newTab: value));
-                        },
-                        labelColor: AppColor.BluePrimary,
-                        indicatorColor: Colors.transparent,
-                        automaticIndicatorColorAdjustment: true,
-                      );
-                    },
+                  Container(
+                    height: 50.h,
+                    margin: EdgeInsets.only(bottom: 10.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                    width: 1.sw,
+                    child: ListView(
+                      padding: EdgeInsets.symmetric(vertical: 5.h),
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        SizedBox(
+                          height: 20.h,
+                          width: 100.w,
+                          child: ElevatedButton.icon(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      const MaterialStatePropertyAll(
+                                          AppColor.Font4),
+                                  iconColor: const MaterialStatePropertyAll(
+                                      AppColor.BluePrimary),
+                                  elevation:
+                                      const MaterialStatePropertyAll(0.5),
+                                  padding: const MaterialStatePropertyAll(
+                                      EdgeInsets.zero),
+                                  shape: MaterialStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)))),
+                              onPressed: () {},
+                              icon: const Icon(Icons.business),
+                              label: const Text(
+                                "Hotel",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColor.FontPrimary),
+                              )),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                          width: 100.w,
+                          child: ElevatedButton.icon(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      const MaterialStatePropertyAll(
+                                          AppColor.Font4),
+                                  iconColor: const MaterialStatePropertyAll(
+                                      AppColor.BluePrimary),
+                                  elevation:
+                                      const MaterialStatePropertyAll(0.5),
+                                  padding: const MaterialStatePropertyAll(
+                                      EdgeInsets.zero),
+                                  shape: MaterialStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)))),
+                              onPressed: () {},
+                              icon: const Icon(Icons.train),
+                              label: const Text(
+                                "Train",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColor.FontPrimary),
+                              )),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                          width: 100.w,
+                          child: ElevatedButton.icon(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      const MaterialStatePropertyAll(
+                                          AppColor.Font4),
+                                  iconColor: const MaterialStatePropertyAll(
+                                      AppColor.BluePrimary),
+                                  elevation:
+                                      const MaterialStatePropertyAll(0.5),
+                                  padding: const MaterialStatePropertyAll(
+                                      EdgeInsets.zero),
+                                  shape: MaterialStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)))),
+                              onPressed: () {},
+                              icon: const Icon(Icons.directions_bus),
+                              label: const Text(
+                                "Bus",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColor.FontPrimary),
+                              )),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                          width: 100.w,
+                          child: ElevatedButton.icon(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      const MaterialStatePropertyAll(
+                                          AppColor.Font4),
+                                  iconColor: const MaterialStatePropertyAll(
+                                      AppColor.BluePrimary),
+                                  elevation:
+                                      const MaterialStatePropertyAll(0.5),
+                                  padding: const MaterialStatePropertyAll(
+                                      EdgeInsets.zero),
+                                  shape: MaterialStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)))),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const FligthPage()),
+                                );
+                              },
+                              icon: const Icon(Icons.flight),
+                              label: const Text(
+                                "Flight",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColor.FontPrimary),
+                              )),
+                        ),
+                      ],
+                    ),
                   ),
-                  BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-                    final state1 = state as HomeInitial;
-
-                    return Expanded(
-                      child: TabBarView(
-                        children: [
-                          SingleChildScrollView(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10.w),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.near_me,
-                                            color: AppColor.OrangePrimary,
-                                          ),
-                                          SizedBox(
-                                            width: 5.w,
-                                          ),
-                                          const Text(
-                                            "Top Nearby",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600),
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "LOCATION",
-                                                style: TextStyle(
-                                                  color: AppColor.FontPrimary,
-                                                  letterSpacing: 2.w,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 10.sp,
-                                                ),
-                                              ),
-                                              DropdownButton(
-                                                padding: EdgeInsets.zero,
-                                                isDense: true,
-                                                value:
-                                                    "Blok M, Jakarta Selatan",
-                                                elevation: 0,
-                                                underline: Container(
-                                                  height: 0,
-                                                ),
-                                                alignment:
-                                                    Alignment.centerRight,
-                                                icon: const Icon(
-                                                    Icons.keyboard_arrow_down),
-                                                items: const [
-                                                  DropdownMenuItem(
-                                                    value:
-                                                        "Blok M, Jakarta Selatan",
-                                                    child: Text(
-                                                        "Blok M, Jakarta Selatan"),
-                                                  ),
-                                                  DropdownMenuItem(
-                                                    value:
-                                                        "Batu IX, Tanjungpinang",
-                                                    child: Text(
-                                                        "Batu IX, Tanjungpinang"),
-                                                  ),
-                                                  DropdownMenuItem(
-                                                    value:
-                                                        "Suka Berenang, Tanjungpinang",
-                                                    child: Text(
-                                                        "Suka Berenang, Tanjungpinang"),
-                                                  ),
-                                                ],
-                                                onChanged: (String? val) {},
-                                                style: TextStyle(
-                                                    fontSize: 10.sp,
-                                                    color: AppColor.FontPrimary,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              )
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            width: 2.w,
-                                          ),
-                                          Icon(
-                                            Icons.my_location,
-                                            size: 19.w,
-                                            color: AppColor.BluePrimary,
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                  const top_nearby_card(
-                                    discount: false,
-                                    image: "assets/img/hotel-photo.jpg",
-                                    location: "Yogyakarta, DIY",
-                                    price: "125K",
-                                    rating: 4,
-                                    title: "Keraton Yogyakarta",
-                                  ),
-                                  const top_nearby_card(
-                                    discount: false,
-                                    image: "assets/img/hotel-photo.jpg",
-                                    location: "Yogyakarta, DIY",
-                                    price: "125K",
-                                    rating: 4,
-                                    title: "Keraton Yogyakarta",
-                                  ),
-                                  SizedBox(
-                                    height: 30.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.recommend_rounded,
-                                            color: AppColor.OrangePrimary,
-                                          ),
-                                          SizedBox(
-                                            width: 5.w,
-                                          ),
-                                          const Text(
-                                            "Recommendation",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600),
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 25.h,
-                                        child: IconButton.filled(
-                                            alignment: Alignment.center,
-                                            color: AppColor.BluePrimary,
-                                            padding: EdgeInsets.zero,
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  const MaterialStatePropertyAll(
-                                                      AppColor.Blue4),
-                                              elevation:
-                                                  const MaterialStatePropertyAll(
-                                                      0),
-                                              padding: MaterialStatePropertyAll(
-                                                EdgeInsets.symmetric(
-                                                    horizontal: 10.w,
-                                                    vertical: 0),
-                                              ),
-                                            ),
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              Icons.arrow_forward_ios_rounded,
-                                              size: 15.h,
-                                            )),
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                  Container(
-                                    width: 200.w,
-                                    child: Card(
-                                      semanticContainer: true,
-                                      elevation: 0,
-                                      child: Flex(
-                                        direction: Axis.vertical,
-                                        children: [
-                                          Container(
-                                            height: 170.w,
-                                            width: 200.w,
-                                            clipBehavior:
-                                                Clip.antiAliasWithSaveLayer,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            child: Image(
-                                              image: AssetImage(
-                                                  "assets/img/hotel-photo.jpg"),
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10.w,
-                                                vertical: 10.h),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Hyatt Regency",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 16.sp),
-                                                ),
-                                                SizedBox(
-                                                  height: 3.h,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.location_on_rounded,
-                                                      size: 15.h,
-                                                      color: AppColor.Font2,
-                                                    ),
-                                                    SizedBox(
-                                                      width: 2.w,
-                                                    ),
-                                                    Text(
-                                                      "Yogyakarta, DIY"
-                                                          .toUpperCase(),
-                                                      style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color: AppColor.Font2,
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 10.h,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    RichText(
-                                                      text: TextSpan(children: [
-                                                        TextSpan(
-                                                            text: "125",
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 14.sp,
-                                                                color: AppColor
-                                                                    .FontPrimary)),
-                                                        TextSpan(
-                                                            text: "/night",
-                                                            style: TextStyle(
-                                                                fontSize: 14.sp,
-                                                                color: AppColor
-                                                                    .Font2))
-                                                      ]),
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons.star,
-                                                          color: AppColor
-                                                              .OrangePrimary,
-                                                          size: 15.h,
-                                                        ),
-                                                        Text(
-                                                          4.toString(),
-                                                          style: TextStyle(
-                                                            fontSize: 10.sp,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        )
-                                                      ],
-                                                    )
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Center(
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  print(state1.currentTab);
-                                },
-                                child: const Text(
-                                  "TRAIN",
-                                  style: TextStyle(fontWeight: FontWeight.w600),
-                                )),
-                          ),
-                          Center(
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  print(state1.currentTab);
-                                },
-                                child: const Text(
-                                  "BUS",
-                                  style: TextStyle(fontWeight: FontWeight.w600),
-                                )),
-                          ),
-                          Center(
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  print(state1.currentTab);
-                                },
-                                child: const Text(
-                                  "FLIGHT",
-                                  style: TextStyle(fontWeight: FontWeight.w600),
-                                )),
-                          ),
-                        ],
-                      ),
-                    );
-                  })
+                  Expanded(child: HotelTabPart(pageController: pageController))
                 ],
               ),
             )

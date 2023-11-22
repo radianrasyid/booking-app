@@ -1,3 +1,4 @@
+import 'package:booking_app/pages/Flight/ui/flight_main_page.dart';
 import 'package:booking_app/pages/Home/bloc/home_bloc.dart';
 import 'package:booking_app/pages/Navigation/bloc/bottom_navigation_bloc.dart';
 import 'package:booking_app/pages/Navigation/bottom_navigation_page.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
               ),
               routes: {
                 '/': (context) => const BottomNavigationPage(),
+                '/flight': (context) => FligthPage(),
               },
             );
           },
