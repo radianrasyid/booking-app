@@ -1,4 +1,6 @@
+import 'package:booking_app/pages/Flight/bloc/flight_bloc.dart';
 import 'package:booking_app/pages/Flight/ui/flight_main_page.dart';
+import 'package:booking_app/pages/Flight/ui/flight_one_way_page.dart';
 import 'package:booking_app/pages/Home/bloc/home_bloc.dart';
 import 'package:booking_app/pages/Navigation/bloc/bottom_navigation_bloc.dart';
 import 'package:booking_app/pages/Navigation/bottom_navigation_page.dart';
@@ -26,6 +28,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => BottomNavigationBloc(),
             lazy: false,
+          ),
+          BlocProvider(
+            create: (context) => FlightBloc(),
+            lazy: true,
           )
         ],
         child: ScreenUtilInit(
@@ -38,7 +44,8 @@ class MyApp extends StatelessWidget {
               ),
               routes: {
                 '/': (context) => const BottomNavigationPage(),
-                '/flight': (context) => FligthPage(),
+                '/flight': (context) => const FligthPage(),
+                '/flight/one-way': (context) => FlightOneWayPage(),
               },
             );
           },

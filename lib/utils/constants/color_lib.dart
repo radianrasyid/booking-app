@@ -35,4 +35,7 @@ class AppColor {
   static const Base2 = Color(0xFFF6F8FB);
   static const Base3 = Color(0xFFF5F5F5);
   static const Base4 = Color(0xFFFFFFFF);
+
+  static const BackgroundPrimary = Color.fromARGB(255, 245, 245, 245);
+  static const Background2 = Color.fromARGB(255, 233, 233, 233);
 }
